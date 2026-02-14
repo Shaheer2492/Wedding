@@ -60,16 +60,11 @@ const RSVPForm = ({ eventName, group, onSuccess }) => {
 
     const allAttendees = [...attendingMembers, ...attendingPlusOnes];
 
-    if (allAttendees.length === 0) {
-      setSubmitError('Please select at least one person attending.');
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
       await submitRSVP({
         groupId: group.id,
-        groupName: group.members[0].name + "'s Party", // Generic group name
+        groupName: group.members[0].name + "'s Party",
+        allMembers: group.members.map(m => m.name),
         side: group.side,
         event: eventName,
         email,
