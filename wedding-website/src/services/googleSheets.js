@@ -2,12 +2,10 @@
  * RSVP Submission Service
  *
  * Submits RSVP data to the /api/rsvp serverless function,
- * which securely forwards it to Airtable server-side.
+ * which securely forwards it to Google Sheets via Apps Script.
  *
- * Required Vercel Environment Variables (set in Vercel dashboard):
- *   AIRTABLE_API_KEY  - Personal Access Token from https://airtable.com/create/tokens
- *   AIRTABLE_BASE_ID  - Base ID from your Airtable base URL
- *   AIRTABLE_TABLE_NAME - (optional) defaults to "RSVP_Responses"
+ * Required Vercel Environment Variable (set in Vercel dashboard):
+ *   GOOGLE_SCRIPT_URL - Web App URL from your deployed Google Apps Script
  */
 
 export const submitRSVP = async (formData) => {

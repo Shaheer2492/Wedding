@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '../ui/Button';
-import { submitRSVP } from '../../services/airtable';
+import { submitRSVP } from '../../services/googleSheets';
 
 const RSVPForm = ({ eventName, group, onSuccess }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);

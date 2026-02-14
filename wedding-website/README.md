@@ -1,23 +1,23 @@
-# Shaheer & Amna's Wedding Website 💍
+# Shaheer & Amna's Wedding Website
 
 A beautiful, responsive wedding website built with React, featuring event details, countdown timer, and RSVP functionality.
 
-## ✨ Features
+## Features
 
 - **Elegant Design**: Romantic soft color palette with Islamic/South Asian cultural elements
 - **Smooth Animations**: Powered by Framer Motion for delightful user experience
 - **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **RSVP System**: Integrated with Airtable for easy guest management
+- **RSVP System**: Integrated with Google Sheets for easy guest management
 - **Multiple Events**: Engagement (detailed), Shaadi, and Valima (placeholders for 2027)
 - **Countdown Timer**: Real-time countdown to the engagement date
 - **Google Maps**: Embedded venue location with directions
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ and npm installed
-- A free Airtable account (for RSVP storage)
+- A Google account (for RSVP storage via Google Sheets)
 
 ### Installation
 
@@ -28,7 +28,7 @@ A beautiful, responsive wedding website built with React, featuring event detail
 
 2. **Set up environment variables**
    - Copy `.env.example` to `.env`
-   - Add your Airtable credentials (see Airtable Setup below)
+   - Add your Google Script URL (see Google Sheets Setup below)
 
 3. **Run development server**
    ```bash
@@ -38,54 +38,47 @@ A beautiful, responsive wedding website built with React, featuring event detail
 4. **Open in browser**
    - Visit `http://localhost:5173`
 
-## 📊 Airtable Setup
+## Google Sheets RSVP Setup
 
-### Step 1: Create Airtable Base
+### Step 1: Create Google Sheet
 
-1. Go to [airtable.com](https://airtable.com) and sign up for a free account
-2. Click "Create a base" → "Start from scratch"
-3. Name it "Wedding RSVP"
+1. Go to [sheets.google.com](https://sheets.google.com) and create a new spreadsheet
+2. Name it "Wedding RSVP"
+3. In **Row 1**, add these column headers:
 
-### Step 2: Create Table Structure
+| A | B | C | D | E | F | G | H | I |
+|---|---|---|---|---|---|---|---|---|
+| Timestamp | Name | Email | Phone | Guest_Count | Event | Side | Group_Name | Message |
 
-Create a table called `RSVP_Responses` with these fields:
+### Step 2: Deploy the Apps Script
 
-| Field Name     | Field Type       | Options                          |
-|----------------|------------------|----------------------------------|
-| Name           | Single line text | -                                |
-| Email          | Email            | -                                |
-| Phone          | Phone number     | -                                |
-| Guest_Count    | Number           | Integer, no decimals             |
-| Event          | Single select    | Engagement, Shaadi, Valima       |
-| Submitted_At   | Created time     | -                                |
+1. In your Google Sheet, go to **Extensions > Apps Script**
+2. Delete any existing code in the editor
+3. Copy and paste the entire contents of `google-apps-script.js` from this repo
+4. Click **Deploy > New deployment**
+5. Click the gear icon and select **Web app**
+6. Set **Execute as**: "Me"
+7. Set **Who has access**: "Anyone"
+8. Click **Deploy**
+9. Authorize when prompted (click "Advanced" > "Go to ... (unsafe)" if needed)
+10. **Copy the Web App URL** — it looks like `https://script.google.com/macros/s/XXXX/exec`
 
-### Step 3: Get API Credentials
+### Step 3: Update Environment Variables
 
-1. Go to [airtable.com/create/tokens](https://airtable.com/create/tokens)
-2. Click "Create new token"
-3. Name it "Wedding Website"
-4. Add these scopes:
-   - `data.records:read`
-   - `data.records:write`
-5. Add access to your "Wedding RSVP" base
-6. Click "Create token" and copy it
-
-### Step 4: Get Base ID
-
-1. Go to [airtable.com/api](https://airtable.com/api)
-2. Select your "Wedding RSVP" base
-3. Find the Base ID in the introduction (starts with `app...`)
-
-### Step 5: Update Environment Variables
-
-Create a `.env` file in the project root:
+For **local development**, create a `.env` file:
 
 ```env
-VITE_AIRTABLE_API_KEY=patXXXXXXXXXXXXXX
-VITE_AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 
-## 🌐 Deployment to Vercel
+For **Vercel production**:
+
+1. Go to your Vercel project dashboard
+2. Settings > Environment Variables
+3. Add: `GOOGLE_SCRIPT_URL` = your Web App URL from Step 2
+4. Redeploy
+
+## Deployment to Vercel
 
 ### Option 1: Deploy via GitHub
 
@@ -103,9 +96,8 @@ VITE_AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
    - Go to [vercel.com](https://vercel.com)
    - Click "New Project"
    - Import your GitHub repository
-   - Add environment variables:
-     - `VITE_AIRTABLE_API_KEY`
-     - `VITE_AIRTABLE_BASE_ID`
+   - Add environment variable:
+     - `GOOGLE_SCRIPT_URL` = your Apps Script Web App URL
    - Click "Deploy"
 
 ### Option 2: Deploy via Vercel CLI
@@ -120,10 +112,9 @@ VITE_AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
    vercel
    ```
 
-3. **Add environment variables**
+3. **Add environment variable**
    ```bash
-   vercel env add VITE_AIRTABLE_API_KEY
-   vercel env add VITE_AIRTABLE_BASE_ID
+   vercel env add GOOGLE_SCRIPT_URL
    ```
 
 4. **Redeploy with environment variables**
@@ -131,7 +122,7 @@ VITE_AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
    vercel --prod
    ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 wedding-website/
@@ -158,17 +149,20 @@ wedding-website/
 │   │   ├── Home.jsx              # Home page
 │   │   └── Events.jsx            # Events page
 │   ├── services/
-│   │   └── airtable.js           # Airtable API integration
+│   │   └── googleSheets.js       # Google Sheets API integration
 │   ├── App.jsx                   # Main app with routing
 │   ├── main.jsx                  # Entry point
 │   └── index.css                 # Global styles + Tailwind
+├── api/
+│   └── rsvp.js                   # Vercel serverless function
+├── google-apps-script.js         # Apps Script code (copy to Google)
 ├── public/                       # Static assets
 ├── .env.example                  # Environment variables template
 ├── tailwind.config.js            # Tailwind configuration
 └── package.json                  # Dependencies
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Colors
 
@@ -199,23 +193,23 @@ Update event information in:
 - `src/components/home/Countdown.jsx` (date/time)
 - `src/components/events/EngagementDetails.jsx` (venue, timeline, dress code)
 
-## 📱 Testing RSVP
+## Testing RSVP
 
 ### Development Mode (No Backend)
 
-If no Airtable credentials are configured, RSVPs will:
+If no Google Script URL is configured, RSVPs will:
 - Still validate forms
-- Show success message
+- Show an error message about missing configuration
 - Log data to browser console (for testing)
 
 ### Production Mode
 
-With Airtable configured:
-- RSVPs are saved to your Airtable base
-- View responses in real-time in Airtable
-- Export to CSV/Excel for planning
+With Google Sheets configured:
+- RSVPs are saved to your Google Sheet in real-time
+- View responses directly in Google Sheets
+- Use Google Sheets filters, charts, and export features
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Build Errors
 
@@ -229,42 +223,49 @@ npm install
 
 - Make sure `.env` file is in the project root
 - Restart development server after changing `.env`
-- Variables must start with `VITE_` prefix
+- `GOOGLE_SCRIPT_URL` should NOT have `VITE_` prefix (it's server-side only)
 - Don't commit `.env` to version control
 
 ### RSVP Not Submitting
 
 1. Check browser console for errors
-2. Verify Airtable API key and Base ID
-3. Check Airtable token has correct permissions
-4. Verify table name is exactly `RSVP_Responses`
+2. Verify `GOOGLE_SCRIPT_URL` is set in Vercel
+3. Make sure Apps Script is deployed as "Anyone" access
+4. Test the Apps Script URL directly with a GET request (should return `{"status":"RSVP endpoint is running"}`)
 
-## 📊 View RSVP Responses
+### Apps Script Authorization Issues
 
-1. Log in to [airtable.com](https://airtable.com)
-2. Open your "Wedding RSVP" base
-3. View all responses in a sortable table
-4. Create views to filter by event
-5. Export to CSV for guest list management
+If you see authorization errors:
+1. Open the Apps Script editor
+2. Run `doGet` function manually once (click Run button)
+3. Authorize the permissions when prompted
+4. Redeploy
 
-## 🔒 Security
+## View RSVP Responses
+
+1. Open your "Wedding RSVP" Google Sheet
+2. All responses appear as new rows with timestamps
+3. Use Data > Create a filter to sort/filter by event
+4. Use File > Download to export as CSV/Excel
+
+## Security
 
 - Never commit `.env` file to Git
 - `.env` is in `.gitignore` by default
-- Airtable API keys are environment variables
+- Google Script URL is a server-side environment variable
 - No sensitive data in client-side code
 
-## 📞 Support
+## Support
 
 For issues or questions:
 - Check this README
-- Review Airtable documentation
+- Review Google Apps Script documentation
 - Check Vercel deployment logs
 
-## 📝 License
+## License
 
-© 2026 Shaheer Khan & Amna Sharif. All Rights Reserved.
+(c) 2026 Shaheer Khan & Amna Sharif. All Rights Reserved.
 
 ---
 
-**Built with ❤️ using React, Tailwind CSS, and Framer Motion**
+**Built with React, Tailwind CSS, and Framer Motion**
