@@ -152,10 +152,10 @@ const EngagementDetails = () => {
                 Important Notes
               </h4>
               <ul className="space-y-2 text-sm text-gray-600 font-sans">
-                <li>✓ Parking available at the venue</li>
-                <li>✓ Dinner will be served buffet style</li>
+                <li>✓ Free Parking available at the venue</li>
+                <li>✓ Optional dress code encouraged!</li>
                 <li>✓ Photography encouraged and welcomed</li>
-                <li>✓ Family-friendly celebration</li>
+                <li>✓ Invite Only Event</li>
               </ul>
             </div>
           </div>
