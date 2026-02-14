@@ -189,6 +189,7 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
             {/* Step 3: Confirmation Form */}
             {step === 'confirm' && selectedGroup && (
               <RSVPForm
+                key={selectedGroup.id} // Force re-render to reset state (messages, attendance)
                 eventName={eventName}
                 group={selectedGroup}
                 onSuccess={handleSuccess}

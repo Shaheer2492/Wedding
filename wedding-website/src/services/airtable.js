@@ -65,12 +65,19 @@ export const submitRSVP = async (formData) => {
       );
 
       if (!response.ok) {
-        throw new Error('Airtable API request failed');
+        const errorData = await response.json();
+        console.error('Airtable API Error Details:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorData.error,
+          message: errorData.error?.message || 'Unknown error'
+        });
+        throw new Error(`Airtable API Error: ${response.status} ${response.statusText} - ${errorData.error?.message || ''}`);
       }
 
       return await response.json();
     } catch (error) {
-      console.error('Airtable error:', error);
+      console.error('Airtable Submission Failed:', error);
       // Fall through to Google Sheets
     }
   }
@@ -104,16 +111,23 @@ export const submitRSVP = async (formData) => {
     }
   }
 
-  // If neither backend is configured, log to console for development
-  console.log('RSVP Submission (No backend configured):', {
-    finalName,
-    email,
-    phone,
-    finalGuestCount,
-    event,
-    attendees,
-    timestamp: new Date().toISOString(),
-  });
+  // If neither backend is configured
+  if (import.meta.env.PROD) {
+    console.warn('RSVP Submission Error: No backend configured (Airtable/Sheets). Data was NOT saved.');
+    // Do NOT log the payload in production to protect privacy
+  } else {
+    // Development only: Log full payload for debugging
+    console.log('RSVP Submission (No backend configured):', {
+      finalName,
+      email,
+      phone,
+      finalGuestCount,
+      event,
+      attendees,
+      // message, // Omit message even in dev logs effectively if not needed, but keeping for dev debug
+      timestamp: new Date().toISOString(),
+    });
+  }
 
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
