@@ -4,14 +4,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-  const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-  const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || 'RSVP_Responses';
+  // Check both naming conventions (with and without VITE_ prefix)
+  const AIRTABLE_API_KEY = (process.env.AIRTABLE_API_KEY || process.env.VITE_AIRTABLE_API_KEY || '').trim();
+  const AIRTABLE_BASE_ID = (process.env.AIRTABLE_BASE_ID || process.env.VITE_AIRTABLE_BASE_ID || '').trim();
+  const AIRTABLE_TABLE_NAME = (process.env.AIRTABLE_TABLE_NAME || process.env.VITE_AIRTABLE_TABLE_NAME || 'RSVP_Responses').trim();
 
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
-    console.error('Missing Airtable configuration: AIRTABLE_API_KEY or AIRTABLE_BASE_ID not set');
+    console.error('Missing Airtable env vars. Available keys with AIRTABLE:',
+      Object.keys(process.env).filter(k => k.includes('AIRTABLE')));
     return res.status(500).json({
-      error: 'Server configuration error. Please contact the site owner.',
+      error: 'Server configuration error: Airtable credentials not found. Check environment variable names.',
     });
   }
 
@@ -61,8 +63,10 @@ export default async function handler(req, res) {
 
       // Provide actionable error messages
       if (response.status === 401) {
+        const keyPrefix = AIRTABLE_API_KEY.substring(0, 6);
+        console.error(`Auth failed. Key starts with: "${keyPrefix}...", Base ID: "${AIRTABLE_BASE_ID}"`);
         return res.status(502).json({
-          error: 'Airtable authentication failed. The API key may be invalid or expired.',
+          error: `Airtable authentication failed (key starts with "${keyPrefix}..."). Regenerate your Personal Access Token at airtable.com/create/tokens and update it in Vercel.`,
         });
       }
       if (response.status === 404) {
