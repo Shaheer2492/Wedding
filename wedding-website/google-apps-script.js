@@ -6,14 +6,15 @@
  * 2. Name it "Wedding RSVP"
  * 3. In Sheet1, add these headers in Row 1:
  *      A1: Timestamp
- *      B1: Name
- *      C1: Email
- *      D1: Phone
- *      E1: Guest_Count
- *      F1: Event
- *      G1: Side
- *      H1: Group_Name
- *      I1: Message
+ *      B1: RSVP_Status
+ *      C1: Name
+ *      D1: Email
+ *      E1: Phone
+ *      F1: Guest_Count
+ *      G1: Event
+ *      H1: Side
+ *      I1: Group_Name
+ *      J1: Message
  *
  * 4. Go to Extensions > Apps Script
  * 5. Delete any existing code and paste this ENTIRE file
@@ -33,11 +34,12 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
 
     sheet.appendRow([
-      new Date(),          // Timestamp
+      new Date(),                        // Timestamp
+      data.rsvpStatus || 'Attending',    // RSVP_Status
       data.name || '',
       data.email || '',
       data.phone || '',
-      data.guestCount || 1,
+      data.guestCount || 0,
       data.event || '',
       data.side || '',
       data.groupName || '',

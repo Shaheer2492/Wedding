@@ -15,23 +15,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, guestCount, event, message, side, groupName } = req.body;
+    const { name, email, phone, guestCount, event, message, side, groupName, rsvpStatus } = req.body;
 
-    if (!name || !email || !phone || !event) {
+    if (!email || !phone || !event) {
       return res.status(400).json({
-        error: 'Missing required fields: name, email, phone, and event are required.',
+        error: 'Missing required fields: email, phone, and event are required.',
       });
     }
 
     const payload = {
-      name,
+      name: name || groupName || '',
       email,
       phone,
-      guestCount: parseInt(guestCount) || 1,
+      guestCount: parseInt(guestCount) || 0,
       event,
       side: side || '',
       groupName: groupName || '',
       message: (message && message.trim()) || '',
+      rsvpStatus: rsvpStatus || 'Attending',
     };
 
     const response = await fetch(GOOGLE_SCRIPT_URL, {
