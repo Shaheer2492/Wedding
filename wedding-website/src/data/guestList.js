@@ -176,10 +176,20 @@ export const guestList = [
         members: [
             { name: 'Faaris Syed', id: 'fs_3' },
             { name: 'Hamza Syed', id: 'hs_2' },
+            { name: 'Ali Syed', id: 'as_2' },
+            { name: 'Nausheen Syed', id: 'ns_2' },
+            { name: 'Safwaan Syed', id: 'ss_2' }
         ],
-        maxPlusOnes: 5,
     },
 
+    {
+        id: 'g_fam_18',
+        side: 'groom',
+        members: [
+            { name: 'Omar Syed', id: 'os_1' },
+            { name: 'Abia Syed', id: 'as_3' }
+        ],
+    },
     // --- Shaheer Friends (Groom) ---
     // Couple: Arjun & Melitza
     {
