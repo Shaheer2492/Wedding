@@ -203,8 +203,8 @@ export const guestList = [
     },
     ...[
         'Jad Jaboom', 'Taranvir (T)', 'Umer Khan', 'Irfan Hamid', 'Shahmir Lodhi', 'Zaeem Amin', 'Samer Ahmed',
-        'Yohaan Birje', 'Arnav Kamra', 'Andrew Robertson', 'Raj Rose', 'Abtin Olaee', 'Asim Godil', 'Ayan Longi', 'Ejaz',
-        'Shayan Hasan', 'Hasnain Farishta', 'Rishabh Kalyanakunmar', 'Aahil'
+        'Yohaan Birje', 'Arnav Kamra', 'Andrew Robertson', 'Raj Rose', 'Abtin Olaee', 'Asim Godil', 'Ayan Longi', 'Ejaz Mohammed',
+        'Shayan Hasan', 'Hasnain Farishta', 'Rishabh Kalyanakunmar', 'Aahil Ali'
     ].map((name, idx) => ({
         id: `g_friend_${idx}`,
         side: 'groom',
