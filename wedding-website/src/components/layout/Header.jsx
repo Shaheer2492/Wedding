@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useRSVP } from '../../context/RSVPContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { setShowRSVP } = useRSVP();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -12,6 +14,11 @@ const Header = () => {
   ];
 
   const isActive = (path) => location.pathname === path;
+
+  const handleRSVPClick = () => {
+    setIsOpen(false);
+    setShowRSVP(true);
+  };
 
   return (
     <motion.header
@@ -28,7 +35,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -42,6 +49,12 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={handleRSVPClick}
+              className="bg-deepRose hover:bg-deepRose/90 text-white font-sans font-medium px-5 py-2 rounded-full transition-all shadow-sm hover:shadow-md text-sm"
+            >
+              RSVP
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -90,6 +103,12 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={handleRSVPClick}
+              className="mt-2 w-full bg-deepRose hover:bg-deepRose/90 text-white font-sans font-medium px-5 py-2.5 rounded-full transition-all text-sm"
+            >
+              RSVP Now
+            </button>
           </motion.nav>
         )}
       </div>

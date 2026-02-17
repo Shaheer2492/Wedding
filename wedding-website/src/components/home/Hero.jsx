@@ -1,39 +1,25 @@
 import { motion } from 'framer-motion';
-import FloralDecoration from '../ui/FloralDecoration';
-import VineDecoration from '../ui/VineDecoration';
-import LargeRose from '../ui/LargeRose';
-import DaisyStem from '../ui/DaisyStem';
-import FlowerBranch from '../ui/FlowerBranch';
+import FloralCorner from '../ui/FloralCorner';
+import FloralVine from '../ui/FloralVine';
+import { useRSVP } from '../../context/RSVPContext';
 
 const Hero = () => {
+  const { setShowRSVP } = useRSVP();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-overlay">
-      {/* Floral Decorations */}
-      <FloralDecoration position="top-left" />
-      <FloralDecoration position="top-right" />
-      <FloralDecoration position="bottom-left" />
-      <FloralDecoration position="bottom-right" />
+      {/* Corner Floral Decorations */}
+      <FloralCorner position="top-left" />
+      <FloralCorner position="top-right" />
+      <FloralCorner position="bottom-left" />
+      <FloralCorner position="bottom-right" />
 
-      {/* Vine Decorations */}
-      <VineDecoration position="center-left" />
-      <VineDecoration position="center-right" />
-
-      {/* New Lush Floral Layer */}
-      {/* Large Roses for weight at corners */}
-      <LargeRose className="bottom-0 left-0 w-48 h-48 md:w-64 md:h-64 -translate-x-12 translate-y-12 rotate-12 opacity-80" />
-      <LargeRose className="top-0 right-0 w-48 h-48 md:w-64 md:h-64 translate-x-12 -translate-y-12 -rotate-12 opacity-80" />
-
-      {/* Daisy Stems rising from bottom */}
-      <DaisyStem className="bottom-0 left-1/4 w-32 h-64 md:w-40 md:h-80 translate-y-16 -rotate-12 opacity-70" />
-      <DaisyStem className="bottom-0 right-1/4 w-32 h-64 md:w-40 md:h-80 translate-y-16 rotate-12 scale-x-[-1] opacity-70" />
-
-      {/* Flower Branches hanging from top */}
-      <FlowerBranch className="top-0 left-1/4 w-40 h-60 md:w-48 md:h-80 -translate-y-12 rotate-12 opacity-70" />
-      <FlowerBranch className="top-0 right-1/4 w-40 h-60 md:w-48 md:h-80 -translate-y-12 -rotate-12 scale-x-[-1] opacity-70" />
-
+      {/* Side Vine Decorations (hidden on mobile) */}
+      <FloralVine side="left" />
+      <FloralVine side="right" />
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-4">
+      <div className="relative z-10 text-center px-8 sm:px-12 md:px-16 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,7 +29,7 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="font-serif text-sage-300 uppercase tracking-widest text-sm mb-4"
           >
             Together with their families
@@ -53,8 +39,8 @@ const Hero = () => {
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="font-script text-4xl sm:text-5xl md:text-8xl text-deepRose mb-4"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="font-script text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-deepRose mb-4"
           >
             Shaheer Khan
           </motion.h1>
@@ -63,18 +49,18 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, rotate: -10 }}
             animate={{ opacity: 1, rotate: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-6xl text-blush-300 my-4 md:my-6"
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-blush-300 my-3 md:my-6"
           >
-            &
+            &amp;
           </motion.div>
 
           {/* Groom Name */}
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="font-script text-4xl sm:text-5xl md:text-8xl text-deepRose mb-8"
+            transition={{ delay: 1.0, duration: 0.8 }}
+            className="font-script text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-deepRose mb-8"
           >
             Amna Sharif
           </motion.h1>
@@ -83,8 +69,8 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="font-serif text-lg md:text-2xl text-gray-600 mb-2"
+            transition={{ delay: 1.3, duration: 0.8 }}
+            className="font-serif text-base sm:text-lg md:text-2xl text-gray-600 mb-2"
           >
             Invite you to celebrate their
           </motion.p>
@@ -92,8 +78,8 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
-            className="font-serif text-xl md:text-3xl text-deepRose uppercase tracking-wider mb-8"
+            transition={{ delay: 1.5, duration: 0.8 }}
+            className="font-serif text-lg sm:text-xl md:text-3xl text-deepRose uppercase tracking-wider mb-6"
           >
             Engagement
           </motion.p>
@@ -102,27 +88,42 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.1, duration: 0.8 }}
-            className="inline-block bg-white/80 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg"
+            transition={{ delay: 1.7, duration: 0.8 }}
+            className="inline-block bg-white/80 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg"
           >
-            <p className="font-sans text-gray-700 text-lg">
+            <p className="font-sans text-gray-700 text-base sm:text-lg">
               <span className="font-semibold">June 14, 2026</span> | 5:00 PM
             </p>
-            <p className="font-sans text-gray-600 text-sm mt-1">
+            <p className="font-sans text-gray-600 text-xs sm:text-sm mt-1">
               San Diego, California
             </p>
+          </motion.div>
+
+          {/* RSVP Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.9, duration: 0.8 }}
+            className="mt-6"
+          >
+            <button
+              onClick={() => setShowRSVP(true)}
+              className="bg-deepRose hover:bg-deepRose/90 text-white font-sans font-medium px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all text-base sm:text-lg"
+            >
+              RSVP Now
+            </button>
           </motion.div>
 
           {/* Decorative Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 2.4, duration: 0.8 }}
-            className="flex items-center justify-center mt-12 space-x-4"
+            transition={{ delay: 2.1, duration: 0.8 }}
+            className="flex items-center justify-center mt-8 space-x-4"
           >
-            <div className="w-24 h-px bg-blush-300"></div>
+            <div className="w-16 sm:w-24 h-px bg-blush-300"></div>
             <div className="w-2 h-2 rounded-full bg-blush-300 animate-float"></div>
-            <div className="w-24 h-px bg-blush-300"></div>
+            <div className="w-16 sm:w-24 h-px bg-blush-300"></div>
           </motion.div>
         </motion.div>
       </div>
@@ -131,7 +132,7 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.7, duration: 0.8 }}
+        transition={{ delay: 2.3, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div

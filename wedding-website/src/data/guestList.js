@@ -169,21 +169,32 @@ export const guestList = [
         maxPlusOnes: 3,
     },
 
+    // Faaris & Hamza Syed
+    {
+        id: 'g_fam_17',
+        side: 'groom',
+        members: [
+            { name: 'Faaris Syed', id: 'fs_3' },
+            { name: 'Hamza Syed', id: 'hs_2' },
+        ],
+        maxPlusOnes: 5,
+    },
+
     // --- Shaheer Friends (Groom) ---
     // Couple: Arjun & Melitza
     {
         id: 'g_friend_couple_1',
         side: 'groom',
         members: [
-            { name: 'Arjun', id: 'gfc_1_1' },
-            { name: 'Melitza', id: 'gfc_1_2' },
+            { name: 'Arjun Bedi', id: 'gfc_1_1' },
+            { name: 'Melitza Ortega', id: 'gfc_1_2' },
         ],
         maxPlusOnes: 0,
     },
     ...[
-        'Jad', 'Taranvir (T)', 'Umer Khan', 'Irfan', 'Shahmir', 'Zaeem', 'Samer',
-        'Yohan', 'Arnav', 'Andrew', 'Raj', 'Abtin', 'Asim', 'Ayaan', 'Ejaz',
-        'Shayan', 'Hasnain', 'Rishaab', 'Aahil'
+        'Jad Jaboom', 'Taranvir (T)', 'Umer Khan', 'Irfan Hamid', 'Shahmir Lodhi', 'Zaeem Amin', 'Samer Ahmed',
+        'Yohaan Birje', 'Arnav Kamra', 'Andrew Robertson', 'Raj Rose', 'Abtin Olaee', 'Asim Godil', 'Ayan Longi', 'Ejaz',
+        'Shayan Hasan', 'Hasnain Farishta', 'Rishabh Kalyanakunmar', 'Aahil'
     ].map((name, idx) => ({
         id: `g_friend_${idx}`,
         side: 'groom',

@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import EngagementDetails from './EngagementDetails';
 import EventPlaceholder from './EventPlaceholder';
-import VineDecoration from '../ui/VineDecoration';
-import LargeRose from '../ui/LargeRose';
-import DaisyStem from '../ui/DaisyStem';
+import FloralCorner from '../ui/FloralCorner';
 
 const EventTabs = () => {
   const [activeTab, setActiveTab] = useState('engagement');
@@ -17,17 +15,13 @@ const EventTabs = () => {
 
   return (
     <section className="py-20 px-4 min-h-screen relative overflow-hidden">
-      {/* Vine Decorations */}
-      <VineDecoration position="top-left" className="-translate-x-4 -translate-y-4 opacity-50" />
-      <VineDecoration position="top-right" className="translate-x-4 -translate-y-4 opacity-50" />
+      {/* Floral Corner Decorations */}
+      <FloralCorner position="top-left" className="opacity-40" />
+      <FloralCorner position="top-right" className="opacity-40" />
+      <FloralCorner position="bottom-left" className="opacity-30" />
+      <FloralCorner position="bottom-right" className="opacity-30" />
 
-      {/* Additional Floral Decorations */}
-      <LargeRose className="top-0 left-0 w-32 h-32 md:w-48 md:h-48 translate-x-8 translate-y-8 opacity-60" />
-      <LargeRose className="top-0 right-0 w-32 h-32 md:w-48 md:h-48 -translate-x-8 translate-y-8 scale-x-[-1] opacity-60" />
-
-      <DaisyStem className="bottom-0 left-0 w-24 h-48 md:w-32 md:h-64 -translate-x-4 translate-y-4 opacity-40" />
-      <DaisyStem className="bottom-0 right-0 w-24 h-48 md:w-32 md:h-64 translate-x-4 translate-y-4 scale-x-[-1] opacity-40" />
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl relative z-10">
         {/* Page Title */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

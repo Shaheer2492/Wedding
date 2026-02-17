@@ -1,5 +1,6 @@
 import Hero from '../components/home/Hero';
 import Countdown from '../components/home/Countdown';
+import FloatingRSVP from '../components/ui/FloatingRSVP';
 import invitationImg from '../assets/invitation.jpeg';
 
 const Home = () => {
@@ -19,6 +20,9 @@ const Home = () => {
       </section>
 
       <Countdown />
+
+      {/* Floating RSVP Button (appears on scroll) */}
+      <FloatingRSVP />
     </div>
   );
 };

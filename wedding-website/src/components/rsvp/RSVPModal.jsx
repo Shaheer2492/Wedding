@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RSVPForm from './RSVPForm';
-import FloralDecoration from '../ui/FloralDecoration';
+import FloralCorner from '../ui/FloralCorner';
 import { guestList } from '../../data/guestList';
 
 const RSVPModal = ({ isOpen, onClose, eventName }) => {
@@ -39,12 +39,17 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
     }
 
     const lowerQuery = query.toLowerCase();
-    const results = guestList.filter((group) => {
-      if (group.side !== side) return false;
-      return group.members.some((member) =>
-        member.name.toLowerCase().includes(lowerQuery)
-      );
+    const results = [];
+
+    guestList.forEach((group) => {
+      if (group.side !== side) return;
+      group.members.forEach((member) => {
+        if (member.name.toLowerCase().includes(lowerQuery)) {
+          results.push({ member, group });
+        }
+      });
     });
+
     setSearchResults(results);
   };
 
@@ -85,8 +90,8 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
           className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
         >
           {/* Floral Decorations */}
-          <FloralDecoration position="top-left" className="opacity-20 scale-75" />
-          <FloralDecoration position="top-right" className="opacity-20 scale-75" />
+          <FloralCorner position="top-left" className="opacity-20 scale-50" />
+          <FloralCorner position="top-right" className="opacity-20 scale-50" />
 
           {/* Close Button */}
           <button
@@ -171,15 +176,20 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
                   {searchQuery.length > 1 && searchResults.length === 0 && (
                     <p className="text-center text-gray-400 font-sans text-sm">No guests found with that name.</p>
                   )}
-                  {searchResults.map((group) => (
+                  {searchResults.map((result) => (
                     <div
-                      key={group.id}
-                      onClick={() => handleGroupSelect(group)}
+                      key={`${result.group.id}-${result.member.id}`}
+                      onClick={() => handleGroupSelect(result.group)}
                       className="p-4 rounded-lg border border-gray-100 hover:border-deepRose/30 hover:bg-blush-50 cursor-pointer transition-all"
                     >
                       <p className="font-serif text-lg text-gray-800">
-                        {group.members.map(m => m.name).join(', ')}
+                        {result.member.name}
                       </p>
+                      {result.group.members.length > 1 && (
+                        <p className="text-xs text-gray-400 font-sans mt-1">
+                          Family group · {result.group.members.length} members
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>

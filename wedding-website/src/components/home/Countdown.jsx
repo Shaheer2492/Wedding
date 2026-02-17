@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Card from '../ui/Card';
-import VineDecoration from '../ui/VineDecoration';
+import FloralCorner from '../ui/FloralCorner';
+import { useRSVP } from '../../context/RSVPContext';
 
 const TimeUnit = ({ value, label }) => (
   <motion.div
@@ -11,18 +12,19 @@ const TimeUnit = ({ value, label }) => (
     transition={{ duration: 0.5 }}
     className="flex flex-col items-center"
   >
-    <div className="bg-gradient-to-br from-deepRose to-blush-300 text-white rounded-xl w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shadow-lg">
-      <span className="text-3xl md:text-4xl font-bold tabular-nums">
+    <div className="bg-gradient-to-br from-deepRose to-blush-300 text-white rounded-xl w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center shadow-lg">
+      <span className="text-2xl sm:text-3xl md:text-4xl font-bold tabular-nums">
         {value.toString().padStart(2, '0')}
       </span>
     </div>
-    <span className="text-gray-600 text-sm md:text-base font-sans mt-2 uppercase tracking-wider">
+    <span className="text-gray-600 text-xs sm:text-sm md:text-base font-sans mt-2 uppercase tracking-wider">
       {label}
     </span>
   </motion.div>
 );
 
 const Countdown = () => {
+  const { setShowRSVP } = useRSVP();
   const engagementDate = new Date('2026-06-14T17:00:00');
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -51,13 +53,11 @@ const Countdown = () => {
     return () => clearInterval(timer);
   }, []);
 
-
-
   return (
     <section className="py-20 px-4 relative overflow-hidden">
-      {/* Vine Decorations */}
-      <VineDecoration position="top-left" className="-translate-x-8 -translate-y-8" />
-      <VineDecoration position="bottom-right" className="translate-x-8 translate-y-8" />
+      {/* Floral Corner Decorations */}
+      <FloralCorner position="top-left" className="opacity-50" />
+      <FloralCorner position="bottom-right" className="opacity-50" />
 
       <div className="container mx-auto max-w-4xl relative z-10">
         <Card>
@@ -75,7 +75,7 @@ const Countdown = () => {
             </p>
 
             {/* Countdown Timer */}
-            <div className="flex justify-center items-center gap-4 md:gap-8 mb-8">
+            <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-8 mb-8">
               <TimeUnit value={timeLeft.days} label="Days" />
               <TimeUnit value={timeLeft.hours} label="Hours" />
               <TimeUnit value={timeLeft.minutes} label="Minutes" />
@@ -98,11 +98,17 @@ const Countdown = () => {
               </p>
             </div>
 
-            {/* RSVP Reminder */}
+            {/* RSVP Reminder + Button */}
             <div className="mt-8 text-center">
-              <p className="text-sm text-gray-500 font-sans">
+              <p className="text-sm text-gray-500 font-sans mb-4">
                 Please RSVP by <span className="font-semibold text-deepRose">March 1, 2026</span>
               </p>
+              <button
+                onClick={() => setShowRSVP(true)}
+                className="bg-deepRose hover:bg-deepRose/90 text-white font-sans font-medium px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
+              >
+                RSVP Now
+              </button>
             </div>
           </motion.div>
         </Card>

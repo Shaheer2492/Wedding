@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import Card from '../ui/Card';
-import FloralDecoration from '../ui/FloralDecoration';
+import FloralCorner from '../ui/FloralCorner';
 
 const EventPlaceholder = ({ eventName }) => {
   return (
     <Card className="relative overflow-hidden">
       {/* Floral Decorations */}
-      <FloralDecoration position="top-right" className="opacity-20" />
-      <FloralDecoration position="bottom-left" className="opacity-20" />
+      <FloralCorner position="top-right" className="opacity-20 scale-50" />
+      <FloralCorner position="bottom-left" className="opacity-20 scale-50" />
 
       <div className="text-center py-16">
         <motion.div
