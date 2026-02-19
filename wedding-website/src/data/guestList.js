@@ -342,6 +342,31 @@ export const guestList = [
         maxPlusOnes: 0,
     },
 
+    // Kala Family
+    {
+        id: 'b_fam_16',
+        side: 'bride',
+        members: [
+            { name: 'Sana Kala', id: 'sank_1' },
+            { name: 'Mohammed Kala', id: 'mohk_1' },
+            { name: 'Aliyana Kala', id: 'alik_1' },
+            { name: 'Musa Kala', id: 'musk_1' },
+            { name: 'Ilham Kala', id: 'ilhk_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Naeem Family
+    {
+        id: 'b_fam_17',
+        side: 'bride',
+        members: [
+            { name: 'Azmat Naeem', id: 'azn_1' },
+            { name: 'Ayesha Naeem', id: 'ayn_1' },
+            { name: 'Shahnaz Naeem', id: 'shn_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+
     // --- Bride's Friends ---
     ...[
         'Shawdie', 'Bismah', 'Rytha', 'Aqsa', 'Ayesha',
