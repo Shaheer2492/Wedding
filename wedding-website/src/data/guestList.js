@@ -204,7 +204,7 @@ export const guestList = [
     ...[
         'Jad Jaboom', 'Taranvir (T)', 'Umer Khan', 'Irfan Hamid', 'Shahmir Lodhi', 'Zaeem Amin', 'Samer Ahmed',
         'Yohaan Birje', 'Arnav Kamra', 'Andrew Robertson', 'Raj Rose', 'Abtin Olaee', 'Asim Godil', 'Ayan Longi', 'Ejaz Mohammed',
-        'Shayan Hasan', 'Hasnain Farishta', 'Rishabh Kalyanakunmar', 'Aahil Ali'
+        'Shayan Hasan', 'Rishabh Kalyanakunmar', 'Aahil Ali'
     ].map((name, idx) => ({
         id: `g_friend_${idx}`,
         side: 'groom',
@@ -366,15 +366,37 @@ export const guestList = [
         ],
         maxPlusOnes: 0,
     },
+    // Zaman Family
+    {
+        id: 'b_fam_18',
+        side: 'bride',
+        members: [
+            { name: 'Asra Zaman', id: 'az_1' },
+            { name: 'Wasay Zaman', id: 'wz_1' },
+            { name: 'Rafay Zaman', id: 'rz_1' },
+            { name: 'Irfan Zaman', id: 'iz_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Siraj Family
+    {
+        id: 'b_fam_19',
+        side: 'bride',
+        members: [
+            { name: 'Rani Siraj', id: 'rs_1' },
+            { name: 'Adnan Siraj', id: 'as_1' },
+        ],
+        maxPlusOnes: 0,
+    },
 
     // --- Bride's Friends ---
     ...[
-        'Shawdie', 'Bismah', 'Rytha', 'Aqsa', 'Ayesha',
+        'Shawdie', 'Bismah Hamid', 'Rytha', 'Aqsa', 'Ayesha',
         'Kathir', 'Sid', 'Anushka', 'Sam', 'Sahil',
         'Rastogi', 'Nadin', 'Rachita', 'Dan', 'Ghania',
         'Aleena', 'Lamees', 'Amani', 'Prits', 'Elena',
-        'Mahdi', 'Aryan', 'Aditi', 'Ana', 'Muhammad anjum',
-        'Dana', 'Judy'
+        'Mahdi', 'Aryan', 'Aditi', 'Ana', 'Muhammad Anjum',
+        'Dana', 'Judy', 'Yahya Naveed'
     ].map((name, idx) => ({
         id: `b_friend_${idx}`,
         side: 'bride',
