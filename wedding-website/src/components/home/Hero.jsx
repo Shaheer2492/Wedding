@@ -42,7 +42,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="font-script text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-deepRose mb-4"
           >
-            Shaheer Khan
+            Shaheer Alam Khan
           </motion.h1>
 
           {/* Ampersand */}
