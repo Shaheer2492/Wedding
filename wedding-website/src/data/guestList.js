@@ -10,7 +10,6 @@ export const guestList = [
             { name: 'Baba', id: 'b_1' },
             { name: 'Mama', id: 'm_2' }, // "BaBa" from user list, maintaining capitalization
             { name: 'Sheharyar Khan', id: 'sk_1' },
-            { name: 'Daniyal Khan', id: 'dk_1' },
         ],
         maxPlusOnes: 0,
     },
@@ -109,9 +108,28 @@ export const guestList = [
         members: [
             { name: 'Meraj Quadar', id: 'meq_1' },
             { name: 'Shazia Quadar', id: 'shq_1' },
-            { name: 'Noor Quadar', id: 'nq_1' },
-            { name: 'Fatima Quadar', id: 'fq_1' },
             { name: 'Zain Quadar', id: 'zq_1' },
+            { name: 'Saleha Shamim', id: 'ssm_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Ishaq Khan & Fatima Quadar Khan (Couple)
+    {
+        id: 'g_couple_1',
+        side: 'groom',
+        members: [
+            { name: 'Ishaq Khan', id: 'iq_1' },
+            { name: 'Fatima Quadar Khan', id: 'fqk_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Noor Quadar Khan & Daniyal Khan (Couple)
+    {
+        id: 'g_couple_2',
+        side: 'groom',
+        members: [
+            { name: 'Noor Quadar Khan', id: 'nqk_2' },
+            { name: 'Daniyal Khan', id: 'dk_1' },
         ],
         maxPlusOnes: 0,
     },
@@ -121,22 +139,10 @@ export const guestList = [
         side: 'groom',
         members: [
             { name: 'Mahnoor Baji', id: 'mbj_1' },
-            { name: 'David', id: 'dav_1' },
+            { name: 'David (Aquaman)', id: 'dav_1' },
+            { name: 'Akhtar Uncle', id: 'au_1' },
+            { name: 'Bilal Bhai', id: 'bb_1' }
         ],
-        maxPlusOnes: 0,
-    },
-    // Bilal Bhai
-    {
-        id: 'g_fam_12',
-        side: 'groom',
-        members: [{ name: 'Bilal Bhai', id: 'bb_1' }],
-        maxPlusOnes: 0,
-    },
-    // Akhtar Uncle
-    {
-        id: 'g_fam_13',
-        side: 'groom',
-        members: [{ name: 'Akhtar Uncle', id: 'au_1' }],
         maxPlusOnes: 0,
     },
     // Samia Baji Family (Kids +3)
