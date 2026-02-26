@@ -408,6 +408,39 @@ export const guestList = [
         maxPlusOnes: 0,
     },
 
+    // Sattar Family
+    {
+        id: 'b_fam_21',
+        side: 'bride',
+        members: [
+            { name: 'Tanya Sattar', id: 'ts_1' },
+            { name: 'Abdul Sattar', id: 'abs_1' },
+            { name: 'Soha Sattar', id: 'sohs_1' },
+            { name: 'Nadia Sattar', id: 'nads_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Nayeem Family
+    {
+        id: 'b_fam_22',
+        side: 'bride',
+        members: [
+            { name: 'Zahid Nayeem', id: 'zn_1' },
+            { name: 'Zarin Nayeem', id: 'zrn_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Asfand Family
+    {
+        id: 'b_fam_23',
+        side: 'bride',
+        members: [
+            { name: 'Asfand Bhai', id: 'asfb_1' },
+            { name: 'Lubna Asfand', id: 'la_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+
     // --- Bride's Friends ---
     ...[
         'Shawdie', 'Bismah Hamid', 'Rytha', 'Aqsa', 'Ayesha',
