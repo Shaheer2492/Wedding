@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, guestCount, event, message, side, groupName, rsvpStatus } = req.body;
+    const { groupId, name, email, phone, guestCount, event, message, side, groupName, rsvpStatus } = req.body;
 
     if (!email || !phone || !event) {
       return res.status(400).json({
@@ -24,6 +24,7 @@ export default async function handler(req, res) {
     }
 
     const payload = {
+      groupId: groupId || '',
       name: name || groupName || '',
       email,
       phone,

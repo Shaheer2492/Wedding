@@ -9,16 +9,17 @@
  */
 
 export const submitRSVP = async (formData) => {
-  const { email, phone, event, attendees, allMembers, groupName, message, side } = formData;
+  const { groupId, email, phone, event, attendees, groupName, message, side } = formData;
 
   const attending = attendees && attendees.length > 0;
   const name = attending
     ? attendees.map((a) => a.name).join(', ')
-    : (allMembers || []).join(', ') || groupName || '';
+    : groupName || '';
   const guestCount = attending ? attendees.length : 0;
   const rsvpStatus = attending ? 'Attending' : 'Not Attending';
 
   const payload = {
+    groupId: groupId || '',
     name,
     email,
     phone,

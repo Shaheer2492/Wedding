@@ -101,7 +101,7 @@ const Countdown = () => {
             {/* RSVP Reminder + Button */}
             <div className="mt-8 text-center">
               <p className="text-sm text-gray-500 font-sans mb-4">
-                Please RSVP by <span className="font-semibold text-deepRose">March 1, 2026</span>
+                Please RSVP by <span className="font-semibold text-deepRose">March 10, 2026</span>
               </p>
               <button
                 onClick={() => setShowRSVP(true)}
