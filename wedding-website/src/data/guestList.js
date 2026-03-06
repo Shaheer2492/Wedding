@@ -441,6 +441,216 @@ export const guestList = [
         ],
         maxPlusOnes: 0,
     },
+    // Rahmat Ullah Quadri Family
+    {
+        id: 'b_fam_24',
+        side: 'bride',
+        members: [
+            { name: 'Rahmat Ullah Quadri', id: 'ruq_1' },
+            { name: 'Mah Parveen Quadri', id: 'mpq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Hamza Quadri Family
+    {
+        id: 'b_fam_25',
+        side: 'bride',
+        members: [
+            { name: 'Hamza Quadri', id: 'hq_1' },
+            { name: 'Mahrukh Quadri', id: 'mhq_1' },
+            { name: 'Mustafa Quadri', id: 'muq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Naveed Qazi Family
+    {
+        id: 'b_fam_26',
+        side: 'bride',
+        members: [
+            { name: 'Naveed Qazi', id: 'nqz_1' },
+            { name: 'Farheen Quadri', id: 'fhq_1' },
+            { name: 'Zain Qazi', id: 'znq_1' },
+            { name: 'Zubair Qazi', id: 'zbq_1' },
+            { name: 'Maryam Zubair', id: 'mzb_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Sohail uddin Ahmed Family
+    {
+        id: 'b_fam_27',
+        side: 'bride',
+        members: [
+            { name: 'Sohail Uddin Ahmed', id: 'sua_1' },
+            { name: 'Ayesha Sohail', id: 'aysh_1' },
+            { name: 'Sarfaraz Rashid', id: 'sfr_1' },
+            { name: 'Maimoona Ahmed', id: 'mma_1' },
+            { name: 'Zaki Ahmed', id: 'zka_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Najma Quadri Family
+    {
+        id: 'b_fam_28',
+        side: 'bride',
+        members: [
+            { name: 'Najma Quadri', id: 'njq_1' },
+            { name: 'Ozma Rahman', id: 'ozr_1' },
+            { name: 'Aziz Rahman', id: 'azr_1' },
+            { name: 'Mazin Rahman', id: 'mzr_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Afroze Rahman Family
+    {
+        id: 'b_fam_29',
+        side: 'bride',
+        members: [
+            { name: 'Afroze Rahman', id: 'afr_1' },
+            { name: 'Imran Ahmed', id: 'ima_1' },
+            { name: 'Ayaan Ahmed', id: 'ayana_1' },
+            { name: 'Hafsa Ahmed', id: 'hfa_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Amrullah Quadri Family
+    {
+        id: 'b_fam_30',
+        side: 'bride',
+        members: [
+            { name: 'Amrullah Quadri', id: 'amq_1' },
+            { name: 'Fahmina Quadri', id: 'fmq_1' },
+            { name: 'Suha Quadri', id: 'suq_1' },
+            { name: 'Marij Quadri', id: 'mrq_1' },
+            { name: 'Zohair Quadri', id: 'zoq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Haniya Siddiqa Family
+    {
+        id: 'b_fam_31',
+        side: 'bride',
+        members: [
+            { name: 'Haniya Siddiqa', id: 'hns_1' },
+            { name: 'Naveed Khan', id: 'nvk_1' },
+            { name: 'Samiya Naveed Khan', id: 'snk_1' },
+            { name: 'Usman Khan', id: 'usk_2' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Ahmed Quadri Family
+    {
+        id: 'b_fam_32',
+        side: 'bride',
+        members: [
+            { name: 'Ahmed Quadri', id: 'ahq_1' },
+            { name: 'Hena Quadri', id: 'hnq_1' },
+            { name: 'Zaid Quadri', id: 'zdq_1' },
+            { name: 'Fyza Quadri', id: 'fyq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Adil Qazi Family
+    {
+        id: 'b_fam_33',
+        side: 'bride',
+        members: [
+            { name: 'Adil Qazi', id: 'adq_1' },
+            { name: 'Ayesha Qazi', id: 'ayq_1' },
+            { name: 'Saad Qazi', id: 'sdq_1' },
+            { name: 'Asad Qazi', id: 'asdq_1' },
+            { name: 'Rafaay Quadri', id: 'rfq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Qayyum Ahmed Family
+    {
+        id: 'b_fam_34',
+        side: 'bride',
+        members: [
+            { name: 'Qayyum Ahmed', id: 'qya_1' },
+            { name: 'Sadia Qayyum', id: 'sdqa_1' },
+            { name: 'Sohaib Ahmed', id: 'soha_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Owais Ahmed Family
+    {
+        id: 'b_fam_35',
+        side: 'bride',
+        members: [
+            { name: 'Owais Ahmed', id: 'owa_1' },
+            { name: 'Meher Ahmed', id: 'mha_1' },
+            { name: 'Ayub Ahmed', id: 'ayba_1' },
+            { name: 'Safina Ahmed', id: 'sfna_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Hassan Ahmed Family
+    {
+        id: 'b_fam_36',
+        side: 'bride',
+        members: [
+            { name: 'Hassan Ahmed', id: 'hsa_1' },
+            { name: 'Asra Hassan', id: 'ash_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Hassan Sulehri Family
+    {
+        id: 'b_fam_37',
+        side: 'bride',
+        members: [
+            { name: 'Hassan Sulehri', id: 'hsl_1' },
+            { name: 'Zehra Quadri', id: 'zhq_1' },
+            { name: 'Enaya Sulehri', id: 'ensl_1' },
+            { name: 'Ayeza Sulehri', id: 'aysl_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Mariam Quadri Family
+    {
+        id: 'b_fam_38',
+        side: 'bride',
+        members: [
+            { name: 'Mariam Quadri', id: 'mriq_1' },
+            { name: 'Tariq Ali', id: 'tral_1' },
+            { name: 'Mikael Ali', id: 'mkal_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Asra Quadri Family
+    {
+        id: 'b_fam_39',
+        side: 'bride',
+        members: [
+            { name: 'Asra Quadri', id: 'asq_1' },
+            { name: 'Ghazala Quadri', id: 'ghq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Hera Quadri Family
+    {
+        id: 'b_fam_40',
+        side: 'bride',
+        members: [
+            { name: 'Hera Quadri', id: 'hrq_1' },
+            { name: 'Alfaaz', id: 'alf_1' },
+        ],
+        maxPlusOnes: 0,
+    },
+    // Shameem Quadri Family
+    {
+        id: 'b_fam_41',
+        side: 'bride',
+        members: [
+            { name: 'Shameem Quadri', id: 'shmq_1' },
+            { name: 'Talat Quadri', id: 'tlq_1' },
+            { name: 'Hareem Quadri', id: 'hrmq_1' },
+            { name: 'Omar Quadri', id: 'omq_1' },
+            { name: 'Sanya Quadri', id: 'snq_1' },
+        ],
+        maxPlusOnes: 0,
+    },
 
     // --- Bride's Friends ---
     ...[
