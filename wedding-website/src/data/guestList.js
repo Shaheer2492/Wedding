@@ -25,6 +25,7 @@ export const guestList = [
         side: 'groom',
         members: [
             { name: 'Mona Ahmed', id: 'ma_1' },
+            { name: 'Ahmed Uncle', id: 'au_1' },
             { name: 'Yusuf Ahmed', id: 'ya_1' },
             { name: 'Alisha Ahmed', id: 'aa_1' },
             { name: 'Myra Ahmed', id: 'my_1' },
