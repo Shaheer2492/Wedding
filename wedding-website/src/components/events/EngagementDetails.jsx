@@ -85,7 +85,7 @@ const EngagementDetails = () => {
                   Formal
                 </p>
                 <p className="text-gray-600 font-sans text-sm">
-                  Traditional
+                  Desi Traditional
                 </p>
                 <div className="mt-2 flex items-center space-x-2">
                   <div className="w-6 h-6 rounded-full bg-babyBlue"></div>
