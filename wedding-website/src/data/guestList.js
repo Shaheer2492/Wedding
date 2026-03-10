@@ -652,6 +652,14 @@ export const guestList = [
         maxPlusOnes: 0,
     },
 
+    // Shazia Tanveer
+    {
+        id: 'b_fam_42',
+        side: 'bride',
+        members: [{ name: 'Shazia Tanveer', id: 'sht_1' }],
+        maxPlusOnes: 0,
+    },
+
     // --- Bride's Friends ---
     ...[
         'Shawdie', 'Bismah Hamid', 'Rytha', 'Aqsa', 'Ayesha',
