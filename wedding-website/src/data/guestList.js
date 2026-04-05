@@ -660,6 +660,22 @@ export const guestList = [
         maxPlusOnes: 0,
     },
 
+    // Noor Ullah Quadri
+    {
+        id: 'b_fam_43',
+        side: 'bride',
+        members: [{ name: 'Noor Ullah Quadri', id: 'nuq_1' }],
+        maxPlusOnes: 0,
+    },
+
+    // Saleha Quadri
+    {
+        id: 'b_fam_44',
+        side: 'bride',
+        members: [{ name: 'Saleha Quadri', id: 'sq_1' }],
+        maxPlusOnes: 0,
+    },
+
     // --- Bride's Friends ---
     ...[
         'Shawdie', 'Bismah Hamid', 'Rytha', 'Aqsa', 'Ayesha',
