@@ -9,11 +9,7 @@ export const RSVPProvider = ({ children }) => {
   return (
     <RSVPContext.Provider value={{ showRSVP, setShowRSVP }}>
       {children}
-      <RSVPModal
-        isOpen={showRSVP}
-        onClose={() => setShowRSVP(false)}
-        eventName="Engagement"
-      />
+      <RSVPModal isOpen={showRSVP} onClose={() => setShowRSVP(false)} eventName="Nikkah" />
     </RSVPContext.Provider>
   );
 };

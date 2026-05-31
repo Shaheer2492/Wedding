@@ -1,12 +1,17 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import RSVPForm from './RSVPForm';
-import FloralCorner from '../ui/FloralCorner';
 import { guestList } from '../../data/guestList';
 
+const SealIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 3 L14 10 L21 12 L14 14 L12 21 L10 14 L3 12 L10 10 Z" />
+  </svg>
+);
+
 const RSVPModal = ({ isOpen, onClose, eventName }) => {
-  const [step, setStep] = useState('side'); // 'side', 'search', 'confirm', 'success'
-  const [side, setSide] = useState(null); // 'groom' or 'bride'
+  const [step, setStep] = useState('side'); // 'side' | 'search' | 'confirm' | 'success'
+  const [side, setSide] = useState(null); // 'groom' | 'bride'
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -19,10 +24,31 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
     setSelectedGroup(null);
   };
 
-  const handleClose = () => {
-    resetState();
-    onClose();
-  };
+  const handleClose = () => onClose();
+
+  // Reset to the first step each time the modal opens; lock body scroll while open.
+  useEffect(() => {
+    if (isOpen) {
+      resetState();
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  // Close on Escape.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const handleSideSelect = (selectedSide) => {
     setSide(selectedSide);
@@ -62,7 +88,7 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
     setStep('success');
     setTimeout(() => {
       handleClose();
-    }, 3000);
+    }, 3500);
   };
 
   const handleBack = () => {
@@ -70,183 +96,98 @@ const RSVPModal = ({ isOpen, onClose, eventName }) => {
     if (step === 'confirm') setStep('search');
   };
 
-  if (!isOpen) return null;
-
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-        onClick={handleClose}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: 'spring', duration: 0.5 }}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
-        >
-          {/* Floral Decorations */}
-          <FloralCorner position="top-left" className="opacity-20 scale-50" />
-          <FloralCorner position="top-right" className="opacity-20 scale-50" />
-
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/80 hover:bg-white shadow-md transition-all"
-            aria-label="Close"
-          >
-            <svg
-              className="w-6 h-6 text-gray-600"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
+    <div
+      className={`modal-overlay${isOpen ? ' show' : ''}`}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+    >
+      <div className="modal rsvp" role="dialog" aria-modal="true" aria-label="RSVP">
+        <button className="modal-x" onClick={handleClose} aria-label="Close">
+          ×
+        </button>
+        {step !== 'side' && step !== 'success' && (
+          <button className="rsvp-back" onClick={handleBack}>
+            ← Back
           </button>
+        )}
 
-          {/* Back Button (for steps > 'side' and not success) */}
-          {step !== 'side' && step !== 'success' && (
-            <button
-              onClick={handleBack}
-              className="absolute top-4 left-4 z-10 p-2 rounded-full bg-white/80 hover:bg-white shadow-md transition-all text-sm font-sans text-gray-600 flex items-center gap-1"
-            >
-              ← Back
-            </button>
-          )}
-
-          {/* Content */}
-          <div className="p-4 md:p-12 min-h-[400px]">
-            {/* Header */}
-            <div className="text-center mb-8">
-              <h2 className="text-4xl md:text-5xl font-script text-deepRose mb-2">
-                RSVP
-              </h2>
-              <div className="flex items-center justify-center mt-4 space-x-4">
-                <div className="w-16 h-px bg-blush-300"></div>
-                <span className="text-sm text-gray-500 font-sans">{eventName}</span>
-                <div className="w-16 h-px bg-blush-300"></div>
-              </div>
-            </div>
-
-            {/* Step 1: Side Selection */}
-            {step === 'side' && (
-              <div className="flex flex-col gap-4 max-w-sm mx-auto">
-                <p className="text-center text-gray-600 font-sans mb-4">
-                  Please select which side you are a guest of:
-                </p>
-                <button
-                  onClick={() => handleSideSelect('groom')}
-                  className="w-full py-4 px-6 bg-white border-2 border-deepRose text-deepRose rounded-xl font-serif text-xl hover:bg-deepRose hover:text-white transition-all shadow-sm hover:shadow-md"
-                >
-                  Groom's Side
-                </button>
-                <button
-                  onClick={() => handleSideSelect('bride')}
-                  className="w-full py-4 px-6 bg-white border-2 border-deepRose text-deepRose rounded-xl font-serif text-xl hover:bg-deepRose hover:text-white transition-all shadow-sm hover:shadow-md"
-                >
-                  Bride's Side
-                </button>
-              </div>
-            )}
-
-            {/* Step 2: Search */}
-            {step === 'search' && (
-              <div className="max-w-md mx-auto">
-                <p className="text-center text-gray-600 font-sans mb-4">
-                  Please search for your name to find your invitation:
-                </p>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={handleSearch}
-                  placeholder="Enter your name..."
-                  className="w-full px-4 py-3 rounded-lg border border-blush-200 focus:outline-none focus:ring-2 focus:ring-deepRose transition-all mb-4 font-sans"
-                  autoFocus
-                />
-
-                <div className="space-y-2 max-h-60 overflow-y-auto">
-                  {searchQuery.length > 1 && searchResults.length === 0 && (
-                    <p className="text-center text-gray-400 font-sans text-sm">No guests found with that name.</p>
-                  )}
-                  {searchResults.map((result) => (
-                    <div
-                      key={`${result.group.id}-${result.member.id}`}
-                      onClick={() => handleGroupSelect(result.group)}
-                      className="p-4 rounded-lg border border-gray-100 hover:border-deepRose/30 hover:bg-blush-50 cursor-pointer transition-all"
-                    >
-                      <p className="font-serif text-lg text-gray-800">
-                        {result.member.name}
-                      </p>
-                      {result.group.members.length > 1 && (
-                        <p className="text-xs text-gray-400 font-sans mt-1">
-                          Family group · {result.group.members.length} members
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Confirmation Form */}
-            {step === 'confirm' && selectedGroup && (
-              <RSVPForm
-                key={selectedGroup.id} // Force re-render to reset state (messages, attendance)
-                eventName={eventName}
-                group={selectedGroup}
-                onSuccess={handleSuccess}
-              />
-            )}
-
-            {/* Step 4: Success Message */}
-            {step === 'success' && (
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-center py-8"
-              >
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="inline-block mb-6"
-                >
-                  <div className="w-20 h-20 bg-gradient-to-br from-deepRose to-blush-300 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-12 h-12 text-white"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                </motion.div>
-                <h3 className="text-3xl font-script text-deepRose mb-4">
-                  Thank You!
-                </h3>
-                <p className="text-gray-600 font-sans mb-2">
-                  Your RSVP has been received successfully.
-                </p>
-                <p className="text-gray-500 font-sans text-sm">
-                  We can't wait to celebrate with you!
-                </p>
-              </motion.div>
-            )}
+        {step !== 'success' && (
+          <div className="rsvp-head">
+            <SealIcon className="ico-seal" />
+            <h3>RSVP</h3>
+            <span className="rsvp-eyebrow">{eventName}</span>
           </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+        )}
+
+        {step === 'side' && (
+          <>
+            <p className="rsvp-lead">Please select whose guest you are:</p>
+            <div className="side-grid">
+              <button className="side-btn" onClick={() => handleSideSelect('groom')}>
+                Groom's Side
+              </button>
+              <button className="side-btn" onClick={() => handleSideSelect('bride')}>
+                Bride's Side
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === 'search' && (
+          <>
+            <p className="rsvp-lead">Search for your name to find your invitation.</p>
+            <div className="rsvp-field">
+              <input
+                type="text"
+                className="rsvp-input"
+                value={searchQuery}
+                onChange={handleSearch}
+                placeholder="Enter your name…"
+                aria-label="Search for your name"
+                autoFocus
+              />
+            </div>
+            <div className="rsvp-results">
+              {searchQuery.length > 1 && searchResults.length === 0 && (
+                <p className="rsvp-empty">No guests found with that name.</p>
+              )}
+              {searchResults.map((result) => (
+                <button
+                  key={`${result.group.id}-${result.member.id}`}
+                  className="rsvp-result"
+                  onClick={() => handleGroupSelect(result.group)}
+                >
+                  <div className="nm">{result.member.name}</div>
+                  {result.group.members.length > 1 && (
+                    <div className="grp">Family group · {result.group.members.length} members</div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {step === 'confirm' && selectedGroup && (
+          <RSVPForm
+            key={selectedGroup.id}
+            eventName={eventName}
+            group={selectedGroup}
+            onSuccess={handleSuccess}
+          />
+        )}
+
+        {step === 'success' && (
+          <div className="rsvp-success">
+            <SealIcon className="seal" />
+            <h3>Thank you</h3>
+            <p>Your RSVP has been received.</p>
+            <p>We can't wait to celebrate with you, inshaAllah.</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

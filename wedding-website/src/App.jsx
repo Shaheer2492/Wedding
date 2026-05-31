@@ -1,24 +1,35 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { RSVPProvider } from './context/RSVPContext';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import Events from './pages/Events';
+import ComingSoon from './pages/ComingSoon';
 
 function App() {
   return (
     <Router>
       <RSVPProvider>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/events" element={<Events />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/wedding"
+            element={
+              <ComingSoon
+                eyebrow="The Celebration Continues"
+                title="The Wedding"
+                note="Details for the wedding celebration are being lovingly prepared. Please check back soon, inshaAllah."
+              />
+            }
+          />
+          <Route
+            path="/valima"
+            element={
+              <ComingSoon
+                eyebrow="The Celebration Continues"
+                title="The Valima"
+                note="Details for the valima reception are being lovingly prepared. Please check back soon, inshaAllah."
+              />
+            }
+          />
+        </Routes>
       </RSVPProvider>
     </Router>
   );

@@ -1,29 +1,27 @@
-import Hero from '../components/home/Hero';
-import Countdown from '../components/home/Countdown';
-import FloatingRSVP from '../components/ui/FloatingRSVP';
-import invitationImg from '../assets/invitation.jpeg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import Hero from '../components/nikkah/Hero';
+import Countdown from '../components/nikkah/Countdown';
+import Verse from '../components/nikkah/Verse';
+import Story from '../components/nikkah/Story';
+import Schedule from '../components/nikkah/Schedule';
+import Details from '../components/nikkah/Details';
+import Faq from '../components/nikkah/Faq';
+import SiteFooter from '../components/nikkah/SiteFooter';
 
 const Home = () => {
+  useScrollReveal();
+
   return (
-    <div className="min-h-screen">
+    <>
       <Hero />
-
-      {/* Invitation Section */}
-      <section className="py-16 px-4 bg-white flex justify-center">
-        <div className="max-w-4xl w-full">
-          <img
-            src={invitationImg}
-            alt="Wedding Invitation"
-            className="w-full h-auto rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
-
       <Countdown />
-
-      {/* Floating RSVP Button (appears on scroll) */}
-      <FloatingRSVP />
-    </div>
+      <Verse />
+      <Story />
+      <Schedule />
+      <Details />
+      <Faq />
+      <SiteFooter />
+    </>
   );
 };
 
