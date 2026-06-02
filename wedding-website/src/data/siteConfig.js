@@ -35,7 +35,7 @@ export const SCHEDULE = [
   { time: '8:00 PM', name: 'Choreographed dances begin' },
   { time: '8:30 PM', name: 'Choreographed dances end' },
   { time: '8:35 PM', name: 'Dessert served' },
-  { time: '8:45 PM', name: 'Surprise flash mob', desc: 'Open dance floor to follow' },
+  { time: '8:45 PM', name: 'Open dance floor' },
   { time: '10:00 PM', name: 'Closing & wrap up' },
 ];
 
