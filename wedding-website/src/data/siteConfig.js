@@ -39,11 +39,12 @@ export const SCHEDULE = [
   { time: '10:00 PM', name: 'Closing & wrap up' },
 ];
 
+// Light, pastel attire palette for the celebration.
 export const DRESS_SWATCHES = [
-  { label: 'Emerald', color: '#0c3b2c' },
-  { label: 'Gold', color: '#b8923f' },
-  { label: 'Plum', color: '#9c6b8f' },
-  { label: 'Copper', color: '#c08457' },
+  { label: 'Pastel Pink', color: '#f7c8d0' },
+  { label: 'Pastel Yellow', color: '#f7ec9e' },
+  { label: 'Pastel Green', color: '#bfe3c6' },
+  { label: 'Pastel Blue', color: '#aac9ea' },
 ];
 
 export const FAQS = [

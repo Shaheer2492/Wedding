@@ -35,13 +35,14 @@ const Details = () => (
           <div className="sub">Dress Code</div>
           <h3>Formal South Asian</h3>
           <p>
-            Elegant traditional attire in soft, festive tones. We kindly ask guests to avoid ivory
-            and pure white.
+            Elegant traditional attire in light, pastel tones — think soft pink, yellow, green, and
+            blue. We kindly ask guests to avoid ivory and pure white.
           </p>
           <div className="swatches">
             {DRESS_SWATCHES.map((s) => (
-              <span key={s.label} className="swatch" style={{ background: s.color }}>
-                <span>{s.label}</span>
+              <span key={s.label} className="swatch">
+                <span className="swatch-dot" style={{ background: s.color }} />
+                <span className="swatch-label">{s.label}</span>
               </span>
             ))}
           </div>
