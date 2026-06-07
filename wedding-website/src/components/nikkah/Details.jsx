@@ -36,7 +36,7 @@ const Details = () => (
           <h3>Formal South Asian</h3>
           <p>
             Elegant traditional attire in light, pastel tones — think soft pink, yellow, green, and
-            blue. We kindly ask guests to avoid ivory and pure white.
+            blue.
           </p>
           <div className="swatches">
             {DRESS_SWATCHES.map((s) => (
