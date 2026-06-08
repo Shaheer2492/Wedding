@@ -16,7 +16,7 @@ export const EVENT = {
 };
 
 export const VENUE = {
-  name: 'Hilton Garden Inn La Jolla',
+  name: 'Hilton Garden Inn Del Mar',
   street: '3939 Ocean Bluff Avenue',
   cityState: 'San Diego, California 92130',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=3939+Ocean+Bluff+Avenue+San+Diego+CA+92130',
