@@ -62,7 +62,7 @@ export const FAQS = [
   },
   {
     q: 'Will there be seating arrangements?',
-    a: 'Open seating during the Nikkah, with assigned tables for the dinner reception. Ushers will be happy to guide you.',
+    a: 'Yes — seating will be assigned, with both indoor and outdoor patio seating available. Ushers will be happy to guide you to your table.',
   },
   {
     q: "I have a question that isn't here.",
