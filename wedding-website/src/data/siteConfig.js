@@ -50,7 +50,7 @@ export const DRESS_SWATCHES = [
 export const FAQS = [
   {
     q: 'Is parking available at the venue?',
-    a: 'Yes — complimentary valet and self-parking are available on-site. We recommend arriving a little early to settle in before the ceremony.',
+    a: 'Yes — self-parking is available on-site. We recommend arriving a little early to settle in before the ceremony.',
   },
   {
     q: 'Will the ceremony be indoors?',
