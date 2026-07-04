@@ -31,7 +31,7 @@ export const submitRSVP = async (formData) => {
     rsvpStatus,
   };
 
-  const response = await fetch('/api/rsvp', {
+  const response = await fetch(`${import.meta.env.BASE_URL}api/rsvp`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
