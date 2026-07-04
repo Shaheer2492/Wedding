@@ -5,7 +5,7 @@ import ComingSoon from './pages/ComingSoon';
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <RSVPProvider>
         <Routes>
           <Route path="/" element={<Home />} />
