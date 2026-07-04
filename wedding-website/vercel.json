@@ -1,6 +1,12 @@
 {
+  "redirects": [
+    { "source": "/", "destination": "/wedding", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/wedding/api/:path*", "destination": "/api/:path*" },
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/wedding/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/wedding/vite.svg", "destination": "/vite.svg" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

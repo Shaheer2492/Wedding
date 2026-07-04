@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Site is served at shaheeralamkhan.com/wedding
+  base: '/wedding/',
   plugins: [
     react(),
     // Mock /api/rsvp in development so the RSVP form completes locally.
@@ -10,7 +12,7 @@ export default defineConfig({
     {
       name: 'mock-rsvp-api',
       configureServer(server) {
-        server.middlewares.use('/api/rsvp', (req, res, next) => {
+        const mockRsvp = (req, res, next) => {
           if (req.method === 'POST') {
             let body = '';
             req.on('data', chunk => { body += chunk; });
@@ -22,7 +24,10 @@ export default defineConfig({
           } else {
             next();
           }
-        });
+        };
+        // The app fetches `${BASE_URL}api/rsvp`; keep the bare path too.
+        server.middlewares.use('/wedding/api/rsvp', mockRsvp);
+        server.middlewares.use('/api/rsvp', mockRsvp);
       },
     },
   ],
